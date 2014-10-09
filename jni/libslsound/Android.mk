@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-SUPPORT_OGG	:=	on
+SUPPORT_OGG	:=	off
 SUPPORT_MP3	:=	off
 
 LOCAL_MODULE := libslsnd
@@ -14,6 +14,8 @@ LOCAL_CFLAGS += -ffast-math -fsigned-char
 ifeq ($(TARGET_ARCH),arm)
 	LOCAL_CFLAGS += -march=armv6 -marm -mfloat-abi=softfp -mfpu=vfp
 endif
+
+
 LOCAL_SHARED_LIBRARIES :=
 FILEIO_SRC_FILES	:=	CSLSoundFile.cpp CSLWavFile.cpp
 
