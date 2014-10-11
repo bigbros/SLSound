@@ -2,6 +2,11 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+APP_PLATFORM	:=	android-14
+APP_ABI			:=	all
+APP_STL			:=	stlport_static
+
+DEBUG_MODE	:=	on
 SUPPORT_OGG	:=	off
 SUPPORT_MP3	:=	off
 
@@ -14,7 +19,9 @@ LOCAL_CFLAGS += -ffast-math -fsigned-char
 ifeq ($(TARGET_ARCH),arm)
 	LOCAL_CFLAGS += -march=armv6 -marm -mfloat-abi=softfp -mfpu=vfp
 endif
-
+ifeq ($(DEBUG_MODE),on)
+	LOCAL_CFLAGS += -g -O0 -DDEBUG
+endif
 
 LOCAL_SHARED_LIBRARIES :=
 FILEIO_SRC_FILES	:=	CSLSoundFile.cpp CSLWavFile.cpp
@@ -30,6 +37,8 @@ ifeq ($(SUPPORT_MP3),on)
 endif
 
 LOCAL_SRC_FILES := \
-	$(FILEIO_SRC_FILES)
+	$(FILEIO_SRC_FILES) \
+	JNIinterface.cpp
+
 
 include $(BUILD_SHARED_LIBRARY)
