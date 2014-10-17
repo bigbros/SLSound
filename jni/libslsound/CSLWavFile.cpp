@@ -67,13 +67,13 @@ CSLWavFile::read_chunk(const char * chunkID, long * chunkSize)
 bool
 CSLWavFile::skip_chunk(const char * chunkID, long * chunkSize)
 {
-	// chunkID ���w�肳�ꂽ���̂ƈقȂ�Ȃ�΁A�T�C�Y�����X�L�b�v���Ď���chunk��ǂ݂ɂ����B
+	// chunkID が指定されたもの以外であれば、そのサイズ分を読み飛ばして虫する。
 	while(!read_chunk(chunkID, chunkSize)) {
-		// �P��chunk�w�b�_�̓ǂݍ��݂Ɏ��s���Ă���ꍇ�́A���s�Ƃ��ĕ񍐂���B
+		// chunkのサイズが0の場合は異常なのでエラー
 		if(!*chunkSize) return false;
 		lseek(m_fd, *chunkSize, SEEK_CUR);
 	}
-	// ���������ꍇ�� chunkSize �ɃT�C�Y����������ԂŁA�ǂ܂��̂�҂�ԂŃ��[�v�𔲂��Ă���B
+	// 指定されたchunkを見つけたのでリターン
 
 	return true;
 }
@@ -82,7 +82,7 @@ bool
 CSLWavFile::read_fmt()
 {
 	long chunkSize;
-	// 'fmt ' chunk ������܂ŁA���� chunk ���X�L�b�v����
+	// 'fmt ' chunk から、PCMフォーマットを取得
 	if(!skip_chunk("fmt ", &chunkSize)) return false;
 
 	unsigned char * buf = new unsigned char [ chunkSize ];
