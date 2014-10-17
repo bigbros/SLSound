@@ -10,7 +10,7 @@ DEBUG_MODE	:=	on
 SUPPORT_OGG	:=	off
 SUPPORT_MP3	:=	off
 
-LOCAL_MODULE := libslsnd
+LOCAL_MODULE := libslsound
 LOCAL_CFLAGS += -I$(LOCAL_PATH)/../include
 LOCAL_CFLAGS += -I$(LOCAL_PATH)/../include/mp3lame
 LOCAL_CFLAGS += -I$(LOCAL_PATH)/../include/mp3lame/mpglib
