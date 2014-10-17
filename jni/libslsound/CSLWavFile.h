@@ -8,8 +8,8 @@ class CSLWavFile : public CSLSoundFile
 private:
 	enum {
 		WAV_PACKET	=	4096
-		// .wav �̓u���b�N���E�P�ʂł���΂ǂ�ȃT�C�Y�œǂ�ł��\��Ȃ����A
-		// �p�P�b�g�T�C�Y�P�ʂœǂݏ�������ꍇ�ׂ̈ɁA4096byte�𐄏��p�P�b�g�T�C�Y�Ƃ��Ă����B
+		// .wav は非圧縮リニアフォーマットで収録されているもののみをサポートする。
+		// .mp3 のようなパケットの概念を持たないが、便宜的にこのサイズが返るようにする。
 	};
 public:
 	static CSLSoundFile * create(const char * fileName);

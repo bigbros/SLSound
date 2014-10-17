@@ -20,7 +20,7 @@ ifeq ($(TARGET_ARCH),arm)
 	LOCAL_CFLAGS += -march=armv6 -marm -mfloat-abi=softfp -mfpu=vfp
 endif
 ifeq ($(DEBUG_MODE),on)
-	LOCAL_CFLAGS += -g -O0 -DDEBUG
+	LOCAL_CFLAGS += -DDEBUG
 endif
 
 LOCAL_SHARED_LIBRARIES :=

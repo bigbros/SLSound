@@ -13,16 +13,16 @@ class CSLSoundFile
 private:
 	int				m_error;
 protected:
-	int				m_fd;		// �ǂݍ��ݒ��̃t�@�C��
-	int				m_rate;		// �T���v�����O���[�g(ex. 44100)
-	short			m_channels;	// �`���l����
-	short			m_depth;	// 1�`���l��1�T���v��������̃T�C�Y(1 or 2)
-	short			m_block;	// �u���b�N�T�C�Y(1�T���v��������̑S�`���l�����v�T�C�Y)
-	long			m_length;	// �����S�̂̃u���b�N��
+	int				m_fd;		// ファイルディスクリプタ
+	int				m_rate;		// サンプリングレート(ex. 44100)
+	short			m_channels;	// チャネル数
+	short			m_depth;	// 1サンプルあたりのバイト数(1 or 2)
+	short			m_block;	// 1ブロック当たりのサイズ(m_depth * m_channels)
+	long			m_length;	// 全体のブロック数
 
-	long			m_packet;	// �p�P�b�g�T�C�Y(���̓ǂݏo���œǂݏo�����Ƃ����������T�C�Y(byte) */
+	long			m_packet;	// パケットあたりのサイズ(byte) */
 
-	bool			m_ready;
+	bool			m_ready;	// 準備ができているか否か
 	/*
 	 * m_block = m_depth * m_channels;
 	 * total size = m_length * m_block

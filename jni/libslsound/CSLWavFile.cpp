@@ -1,6 +1,6 @@
 #include "CSLWavFile.h"
 
-// ƒtƒ@ƒNƒgƒŠ‚ÉƒGƒ“ƒgƒŠ‚ğ’Ç‰Á‚³‚¹‚éB
+// ãƒ•ã‚¡ã‚¯ãƒˆãƒªã®ç™»éŒ²
 static CSLSoundFactory factory(".wav", 0, 0, CSLWavFile::create);
 
 CSLSoundFile *
@@ -67,13 +67,13 @@ CSLWavFile::read_chunk(const char * chunkID, long * chunkSize)
 bool
 CSLWavFile::skip_chunk(const char * chunkID, long * chunkSize)
 {
-	// chunkID ‚ªw’è‚³‚ê‚½‚à‚Ì‚ÆˆÙ‚È‚é‚È‚ç‚ÎAƒTƒCƒY•ª‚ğƒXƒLƒbƒv‚µ‚ÄŸ‚Ìchunk‚ğ“Ç‚İ‚É‚¢‚­B
+	// chunkID ï¿½ï¿½ï¿½wï¿½è‚³ï¿½ê‚½ï¿½ï¿½ï¿½Ì‚ÆˆÙ‚È‚ï¿½È‚ï¿½ÎAï¿½Tï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Lï¿½bï¿½vï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½chunkï¿½ï¿½Ç‚İ‚É‚ï¿½ï¿½ï¿½ï¿½B
 	while(!read_chunk(chunkID, chunkSize)) {
-		// ’P‚Échunkƒwƒbƒ_‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ä‚¢‚éê‡‚ÍA¸”s‚Æ‚µ‚Ä•ñ‚·‚éB
+		// ï¿½Pï¿½ï¿½chunkï¿½wï¿½bï¿½_ï¿½Ì“Ç‚İï¿½ï¿½İ‚Éï¿½ï¿½sï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‡ï¿½ÍAï¿½ï¿½ï¿½sï¿½Æ‚ï¿½ï¿½Ä•ñ‚ï¿½ï¿½ï¿½B
 		if(!*chunkSize) return false;
 		lseek(m_fd, *chunkSize, SEEK_CUR);
 	}
-	// ”­Œ©‚µ‚½ê‡‚Í chunkSize ‚ÉƒTƒCƒY‚ª“ü‚Á‚½ó‘Ô‚ÅA“Ç‚Ü‚ê‚é‚Ì‚ğ‘Ò‚Âó‘Ô‚Åƒ‹[ƒv‚ğ”²‚¯‚Ä‚¢‚éB
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½ chunkSize ï¿½ÉƒTï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÅAï¿½Ç‚Ü‚ï¿½ï¿½Ì‚ï¿½Ò‚Âï¿½Ô‚Åƒï¿½ï¿½[ï¿½vï¿½ğ”²‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½B
 
 	return true;
 }
@@ -82,7 +82,7 @@ bool
 CSLWavFile::read_fmt()
 {
 	long chunkSize;
-	// 'fmt ' chunk ‚ª—ˆ‚é‚Ü‚ÅA‘¼‚Ì chunk ‚ğƒXƒLƒbƒv‚·‚é
+	// 'fmt ' chunk ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ÅAï¿½ï¿½ï¿½ï¿½ chunk ï¿½ï¿½ï¿½Xï¿½Lï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
 	if(!skip_chunk("fmt ", &chunkSize)) return false;
 
 	unsigned char * buf = new unsigned char [ chunkSize ];
@@ -99,7 +99,7 @@ CSLWavFile::read_fmt()
 	m_block		= get_short(buf + 12);
 	m_depth		= get_short(buf + 14) / 8;
 	delete [] buf;
-	return (fmt_id == 1);	// ƒtƒH[ƒ}ƒbƒgID‚ª1(LinearPCM)‚Å‚È‚¯‚ê‚ÎƒGƒ‰[ˆµ‚¢B
+	return (fmt_id == 1);	// ï¿½tï¿½Hï¿½[ï¿½}ï¿½bï¿½gIDï¿½ï¿½1(LinearPCM)ï¿½Å‚È‚ï¿½ï¿½ï¿½ÎƒGï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½B
 }
 
 bool
@@ -108,10 +108,10 @@ CSLWavFile::find_data()
 	long chunkSize = 0;
 	if(!skip_chunk("data", &chunkSize)) return false;
 
-	// 'data' chunk ‚Ìæ“ª‚ğAƒŠƒjƒAPCM‚Ìæ“ªˆÊ’u‚Æ‚µ‚Ä‹L˜^‚·‚éB
+	// 'data' chunk ã®å…ˆé ­ã‚’è¨˜éŒ²ã™ã‚‹
 	m_pcm_top_pos = lseek(m_fd, 0L, SEEK_CUR);
 
-	// 'data' chunk ‚ÌƒTƒCƒY‚©‚çA‘S‘Ì‚ÌƒuƒƒbƒN”(m_length)‚ğŒvZ‚·‚éB
+	// 'data' chunk ã®ã‚µã‚¤ã‚ºã‚’ãƒ–ãƒ­ãƒƒã‚¯ã‚µã‚¤ã‚ºã§å‰²ã£ãŸã‚‚ã®ãŒå…¨ä½“ã®ãƒ–ãƒ­ãƒƒã‚¯æ•°
 	m_length = chunkSize / m_block;
 }
 
@@ -121,7 +121,7 @@ CSLWavFile::check_riff()
 	long bodySize = 0;
 	if(!read_chunk("RIFF", &bodySize)) return false;
 
-	// RIFFƒf[ƒ^æ“ª‚Ì4byte‚ª "WAVE" ‚Å‚ ‚é‚±‚Æ‚ğŠm”F‚·‚éB
+	// RIFFãƒ˜ãƒƒãƒ€ã®èª­ã¿è¾¼ã¿ã€‚
 	unsigned char buf[4];
 	if(4 != read(m_fd, buf, 4)) return false;
 	return !strncmp((char *)buf, "WAVE", 4);
