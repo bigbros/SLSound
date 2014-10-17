@@ -6,20 +6,21 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <error.h>
 
 class CSLSoundFile
 {
 private:
 	int				m_error;
 protected:
-	int				m_fd;		// “Ç‚İ‚İ’†‚Ìƒtƒ@ƒCƒ‹
-	int				m_rate;		// ƒTƒ“ƒvƒŠƒ“ƒOƒŒ[ƒg(ex. 44100)
-	short			m_channels;	// ƒ`ƒƒƒlƒ‹”
-	short			m_depth;	// 1ƒ`ƒƒƒlƒ‹1ƒTƒ“ƒvƒ‹‚ ‚½‚è‚ÌƒTƒCƒY(1 or 2)
-	short			m_block;	// ƒuƒƒbƒNƒTƒCƒY(1ƒTƒ“ƒvƒ‹‚ ‚½‚è‚Ì‘Sƒ`ƒƒƒlƒ‹‡ŒvƒTƒCƒY)
-	long			m_length;	// ‰¹Œ¹‘S‘Ì‚ÌƒuƒƒbƒN”
+	int				m_fd;		// ï¿½Ç‚İï¿½ï¿½İ’ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½
+	int				m_rate;		// ï¿½Tï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½[ï¿½g(ex. 44100)
+	short			m_channels;	// ï¿½`ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½
+	short			m_depth;	// 1ï¿½`ï¿½ï¿½ï¿½lï¿½ï¿½1ï¿½Tï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒTï¿½Cï¿½Y(1 or 2)
+	short			m_block;	// ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Tï¿½Cï¿½Y(1ï¿½Tï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‘Sï¿½`ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Tï¿½Cï¿½Y)
+	long			m_length;	// ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½Ì‚Ìƒuï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½
 
-	long			m_packet;	// ƒpƒPƒbƒgƒTƒCƒY(ˆê‰ñ‚Ì“Ç‚İo‚µ‚Å“Ç‚İo‚·‚±‚Æ‚ª„§‚³‚ê‚éƒTƒCƒY(byte) */
+	long			m_packet;	// ï¿½pï¿½Pï¿½bï¿½gï¿½Tï¿½Cï¿½Y(ï¿½ï¿½ï¿½Ì“Ç‚İoï¿½ï¿½ï¿½Å“Ç‚İoï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tï¿½Cï¿½Y(byte) */
 
 	bool			m_ready;
 	/*
