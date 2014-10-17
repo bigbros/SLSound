@@ -113,6 +113,7 @@ CSLWavFile::find_data()
 
 	// 'data' chunk のサイズをブロックサイズで割ったものが全体のブロック数
 	m_length = chunkSize / m_block;
+	return true;
 }
 
 bool
