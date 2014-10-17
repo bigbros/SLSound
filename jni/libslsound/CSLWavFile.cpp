@@ -99,7 +99,7 @@ CSLWavFile::read_fmt()
 	m_block		= get_short(buf + 12);
 	m_depth		= get_short(buf + 14) / 8;
 	delete [] buf;
-	return (fmt_id == 1);	// �t�H�[�}�b�gID��1(LinearPCM)�łȂ���΃G���[�����B
+	return (fmt_id == 1);	// このクラスではformat type 1(LinearPCM)以外サポートしない
 }
 
 bool
